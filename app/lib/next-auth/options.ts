@@ -6,7 +6,7 @@ export const nextAuthOptions: NextAuthOptions = {
   debug: false,
   providers: [
     GithubProvider({
-      clientId: process.env.GITHUB_ID!,
+      clientId: process.env.GITHUB_ID!, //env.development
       clientSecret: process.env.GITHUB_SECRET!,
     }),
   ],
