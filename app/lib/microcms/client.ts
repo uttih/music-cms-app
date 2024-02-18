@@ -1,3 +1,4 @@
+import { BookType } from "@/app/types/types";
 import { createClient } from "microcms-js-sdk";
 
 export const client = createClient({
@@ -6,7 +7,7 @@ export const client = createClient({
 });
 
 export const getAllBooks = async () => {
-  const allBooks = await client.getList({
+  const allBooks = await client.getList<BookType>({
     endpoint: "musiccms",
   });
 
