@@ -27,7 +27,7 @@ export async function POST(request: Request, response: Response) {
       cancel_url: "https://localhost:3000",
     });
 
-    return NextResponse.json({ session });
+    return NextResponse.json({ checkout_url: session.url });
   } catch (err: any) {
     return NextResponse.json(err.message);
   }

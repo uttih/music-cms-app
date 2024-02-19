@@ -31,7 +31,12 @@ const Book = ({ book }: BookProps) => {
           }),
         }
       );
-      console.log(response);
+
+      const responseData = await response.json();
+
+      if (responseData) {
+        router.push(responseData.checkout_url);
+      }
     } catch (err) {
       console.log(err);
     }
