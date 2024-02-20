@@ -23,8 +23,8 @@ export async function POST(request: Request, response: Response) {
         },
       ],
       mode: "payment",
-      success_url: `https://localhost:3000/book/checkout-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: "https://localhost:3000",
+      success_url: `http://localhost:3000/book/checkout-success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: "http://localhost:3000",
     });
 
     return NextResponse.json({ checkout_url: session.url });
