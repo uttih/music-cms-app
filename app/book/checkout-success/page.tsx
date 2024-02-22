@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 const PurchaseSuccess = () => {
+  const [bookUrl, setBookUrl] = useState(null);
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
 
@@ -24,7 +25,11 @@ const PurchaseSuccess = () => {
             }
           );
           // console.log(await res.json());
-        } catch (err) {}
+          const data = await res.json();
+          setBookUrl(data.purchase.bookId);
+        } catch (err) {
+          console.error(err);
+        }
       }
     };
 
@@ -42,7 +47,7 @@ const PurchaseSuccess = () => {
         </p>
         <div className="mt-6 text-center">
           <Link
-            href={`/`}
+            href={`/book/${bookUrl}`}
             className="text-indigo-600 hover:text-indigo-800 transition duration-300"
           >
             購入した記事を読む
