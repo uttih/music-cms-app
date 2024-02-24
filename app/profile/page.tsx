@@ -1,12 +1,15 @@
 import Image from "next/image";
 import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "../lib/next-auth/options";
-import { Purchase, User } from "../types/types";
+import { BookType, Purchase, User } from "../types/types";
 import { getDetailBook } from "../lib/microcms/client";
+import PurchaseDetailBook from "../components/PurchaseDetailBook";
 
 export default async function ProfilePage() {
   const session = await getServerSession(nextAuthOptions);
   const user = session?.user as User;
+
+  let purchasesDetailBooks: BookType[] = [];
 
   if (user) {
     const response = await fetch(
@@ -15,7 +18,7 @@ export default async function ProfilePage() {
     );
     const purchasesData = await response.json();
 
-    const purchasesDetailBooks = await Promise.all(
+    purchasesDetailBooks = await Promise.all(
       purchasesData.map(async (purchase: Purchase) => {
         return await getDetailBook(purchase.bookId);
       })
@@ -42,6 +45,12 @@ export default async function ProfilePage() {
 
       <span className="font-medium text-lg mb-4 mt-4 block">購入した記事</span>
       <div className="flex items-center gap-6"></div>
+      {purchasesDetailBooks.map((purchaseDetailBook: BookType) => (
+        <PurchaseDetailBook
+          key={purchaseDetailBook.id}
+          purchaseDetailBook={purchaseDetailBook}
+        />
+      ))}
     </div>
   );
 }
