@@ -1,11 +1,26 @@
 import Image from "next/image";
 import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "../lib/next-auth/options";
-import { User } from "../types/types";
+import { Purchase, User } from "../types/types";
+import { getDetailBook } from "../lib/microcms/client";
 
 export default async function ProfilePage() {
   const session = await getServerSession(nextAuthOptions);
   const user = session?.user as User;
+
+  if (user) {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/purchases/${user.id}`,
+      { cache: "no-store" } //SSR
+    );
+    const purchasesData = await response.json();
+
+    const purchasesDetailBooks = await Promise.all(
+      purchasesData.map(async (purchase: Purchase) => {
+        return await getDetailBook(purchase.bookId);
+      })
+    );
+  }
 
   return (
     <div className="container mx-auto p-4">
