@@ -37,7 +37,7 @@ export default async function ProfilePage() {
             alt="user profile_icon"
             width={60}
             height={60}
-            className="rounded-t-md"
+            className="rounded-full"
           />
           <h2 className="text-lg ml-4 font-semibold">お名前：{user.name}</h2>
         </div>

@@ -48,6 +48,7 @@ const Header = async () => {
               height={50}
               alt="profile_icon"
               src={user?.image || "/default_icon.png"}
+              className="rounded-full"
             />
           </Link>
         </div>
