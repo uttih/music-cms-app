@@ -33,24 +33,25 @@ export default async function ProfilePage() {
         <div className="flex items-center">
           <Image
             priority
-            src={user.image || "/default_icon.png"}
+            src={user?.image || "/default_icon.png"}
             alt="user profile_icon"
             width={60}
             height={60}
             className="rounded-full"
           />
-          <h2 className="text-lg ml-4 font-semibold">お名前：{user.name}</h2>
+          <h2 className="text-lg ml-4 font-semibold">お名前：{user?.name}</h2>
         </div>
       </div>
 
       <span className="font-medium text-lg mb-4 mt-4 block">購入した記事</span>
-      <div className="flex items-center gap-6"></div>
-      {purchasesDetailBooks.map((purchaseDetailBook: BookType) => (
-        <PurchaseDetailBook
-          key={purchaseDetailBook.id}
-          purchaseDetailBook={purchaseDetailBook}
-        />
-      ))}
+      <div className="flex items-center gap-6">
+        {purchasesDetailBooks.map((purchaseDetailBook: BookType) => (
+          <PurchaseDetailBook
+            key={purchaseDetailBook.id}
+            purchaseDetailBook={purchaseDetailBook}
+          />
+        ))}
+      </div>
     </div>
   );
 }
