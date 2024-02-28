@@ -7,6 +7,27 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
+const modalStyle = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  position: "fixed" as "fixed",
+  top: "0",
+  left: "0",
+  right: "0",
+  bottom: "0",
+  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  zIndex: "1000",
+};
+
+const modalContentStyle = {
+  backgroundColor: "white",
+  padding: "20px",
+  borderRadius: "10px",
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+  zIndex: "1001",
+};
+
 type BookProps = {
   book: BookType;
   isPurchased: boolean;
@@ -109,8 +130,8 @@ const Book = ({ book, isPurchased, user }: BookProps) => {
         </a>
 
         {showModal && (
-          <div className="absolute top-0 left-0 right-0 bottom-0 bg-slate-900 bg-opacity-50 flex justify-center items-center modal">
-            <div className="bg-white p-8 rounded-lg">
+          <div style={modalStyle}>
+            <div style={modalContentStyle}>
               <h3 className="text-xl mb-4">本を購入しますか？</h3>
               <button
                 onClick={handlePurchaseConfirm}
