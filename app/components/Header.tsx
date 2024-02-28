@@ -43,7 +43,7 @@ const Header = async () => {
             <Link
               href={"/api/auth/signout"}
               //onClick={() => signOut({ callbackUrl: "/login" })}
-              className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              className="text-black hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
               ログアウト
             </Link>
