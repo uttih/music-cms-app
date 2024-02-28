@@ -45,7 +45,7 @@ const Header = async () => {
               //onClick={() => signOut({ callbackUrl: "/login" })}
               className="text-black hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
-              ログアウト
+              <span className="ml-2 font-serif">ログアウト</span>
             </Link>
           ) : (
             ""
