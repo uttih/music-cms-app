@@ -5,6 +5,8 @@ import React from "react";
 import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "../lib/next-auth/options";
 import { User } from "../types/types";
+import { FcMusic } from "react-icons/fc";
+import { FaHome } from "react-icons/fa";
 
 const Header = async () => {
   const session = await getServerSession(nextAuthOptions);
@@ -12,23 +14,30 @@ const Header = async () => {
   //console.log(user);
 
   return (
-    <header className="bg-slate-600 text-gray-100 shadow-lg">
+    <header className=" text-gray-100 shadow-lg">
       <nav className="flex items-center justify-between p-4">
-        <Link href={"/"} className="text-xl font-bold">
-          Music CMS
+        <Link
+          href={"/"}
+          className="text-xl font-medium flex items-center text-black"
+        >
+          <FcMusic className="w-8 h-8" />
+          <span className="ml-2 font-serif">Music-CMS</span>
         </Link>
         <div className="flex items-center gap-1">
           <Link
             href="/"
-            className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+            className="text-black  hover:text-white px-3 py-2 rounded-md text-sm font-medium flex items-center"
           >
-            ホーム
+            <FaHome className="w-8 h-8" />
+            <span className="ml-2 font-serif">ホーム</span>
           </Link>
           <Link
             href={user ? "/profile" : "/api/auth/signin"}
-            className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+            className="text-black hover:text-white px-3 py-2 rounded-md text-sm font-medium"
           >
-            {user ? "プロフィール" : "ログイン"}
+            <span className="ml-2 font-serif">
+              {user ? "プロフィール" : "ログイン"}
+            </span>
           </Link>
           {user ? (
             <Link
