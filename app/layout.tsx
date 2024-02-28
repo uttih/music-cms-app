@@ -6,6 +6,7 @@ import { SessionProvider } from "next-auth/react";
 import { NextAuthProvider } from "./lib/next-auth/provider";
 import { Suspense } from "react";
 import Loading from "./loading";
+import Footer from "./components/Footer";
 
 const notoSansJP = Noto_Sans_JP({ subsets: ["latin"], weight: ["400"] });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
         <NextAuthProvider>
           <Header />
           <Suspense fallback={<Loading />}>{children}</Suspense>
+          <Footer />
         </NextAuthProvider>
       </body>
     </html>
