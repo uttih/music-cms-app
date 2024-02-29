@@ -111,7 +111,8 @@ const Book = ({ book, isPurchased, user }: BookProps) => {
 
       <div className="flex flex-col items-center m-4">
         <a
-          onClick={handlePurchaseClick}
+          //onClick={handlePurchaseClick}
+          href={`/book/${book.id}`}
           className="cursor-pointer shadow-2xl duration-300 hover:translate-y-1 hover:shadow-none"
         >
           <Image
