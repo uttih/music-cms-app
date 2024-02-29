@@ -1,9 +1,19 @@
 import { BookType } from "@/app/types/types";
 import { createClient } from "microcms-js-sdk";
+import "server-only";
 
 export const client = createClient({
   serviceDomain: process.env.NEXT_PUBLIC_SERVICE_DOMAIN!,
   apiKey: process.env.NEXT_PUBLIC_API_KEY!,
+  customFetch: (input, init) => {
+    if (typeof input === "string") {
+      const newInput = new URL(input);
+      const time = new Date();
+      newInput.searchParams.set("cacheclearparam", `${time.getMinutes()}`);
+      return fetch(newInput.href, init);
+    }
+    return fetch(input, init);
+  },
 });
 
 export const getAllBooks = async () => {
