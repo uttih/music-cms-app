@@ -89,6 +89,10 @@ const Book = ({ book, isPurchased, user }: BookProps) => {
       startCheckout();
     }
   };
+  const formattedPrice = new Intl.NumberFormat("ja-JP", {
+    style: "currency",
+    currency: "JPY",
+  }).format(book.price);
 
   return (
     <>
@@ -111,8 +115,7 @@ const Book = ({ book, isPurchased, user }: BookProps) => {
 
       <div className="flex flex-col items-center m-4">
         <a
-          //onClick={handlePurchaseClick}
-          href={`/book/${book.id}`}
+          onClick={handlePurchaseClick}
           className="cursor-pointer shadow-2xl duration-300 hover:translate-y-1 hover:shadow-none"
         >
           <Image
@@ -125,15 +128,18 @@ const Book = ({ book, isPurchased, user }: BookProps) => {
           />
           <div className="px-4 py-4 bg-slate-100 rounded-b-md">
             <h2 className="text-lg font-semibold">{book.title}</h2>
-            <p className="mt-2 text-lg text-slate-600">この本は○○</p>
-            <p className="mt-2 text-md text-slate-700">値段：{book.price}円</p>
+            <p className="mt-2 text-lg text-slate-600">この商品は...</p>
+            <div className="flex">
+              <p className="text-3xl text-red-600">{formattedPrice}</p>
+              <p className="text-gray-400 align-text-bottom">+送料</p>
+            </div>
           </div>
         </a>
 
         {showModal && (
           <div style={modalStyle}>
             <div style={modalContentStyle}>
-              <h3 className="text-xl mb-4">本を購入しますか？</h3>
+              <h3 className="text-xl mb-4">この商品を購入しますか？</h3>
               <button
                 onClick={handlePurchaseConfirm}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4"
