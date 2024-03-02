@@ -50,7 +50,7 @@ const PurchaseSuccess = () => {
             href={`/book/${bookUrl}`}
             className="text-indigo-600 hover:text-indigo-800 transition duration-300"
           >
-            購入した記事を読む
+            購入した商品の詳細を見る
           </Link>
         </div>
       </div>
