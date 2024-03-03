@@ -23,6 +23,13 @@ const Header = async () => {
           <FcMusic className="w-8 h-8" />
           <span className="ml-2 font-serif">Music-CMS</span>
         </Link>
+        <div className="flex-grow mx-4 max-w-md">
+          <input
+            type="text"
+            placeholder="商品を検索...."
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
         <div className="flex items-center gap-1">
           <Link
             href="/"
