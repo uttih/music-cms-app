@@ -27,7 +27,7 @@ const Header = async () => {
           <input
             type="text"
             placeholder="商品を検索...."
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
           />
         </div>
         <div className="flex items-center gap-1">
